@@ -28,6 +28,7 @@ docker-compose -f docker-compose.yml -f pma.yml up
 ```
 
 That command runs the php, nginx, mysql and pma container, if you don't need the database interface you can the "-f pma.yml"
+Let this terminal be open, use onther tab for the next shell command.
 
 * Install symfony:
 connect to the shell php container
@@ -36,18 +37,24 @@ connect to the shell php container
 docker exec -it test-php sh
 ```
 
+Use the default composer.json for a full web application, or use the composer.skeleton.json (rename it) for a microservice or even get your own
+
 once inside the pho container shell, install symfony via composer
 
 ```sh
-composer create-project symfony/skeleton:"6.3.*"
-```
-
-the previous command is enough if you are building a microservice, otherwise install the different traditional web application dependencies
-
-```sh
-composer require webapp
+composer install
 ```
 
 * Test
 Head over http://127.0.0.1:8011/
 And to for the datbase http://127.0.0.1:4011/
+
+* Remove .git and start your own. You might want to modify this Readme file to suit your own project
+
+```sh
+rm -rf .git
+```
+
+```sh
+git init
+```
